@@ -1,3 +1,7 @@
+#设置spring-boot启动的端口号
+server:
+  port: 9000
+
 my:
   name: 许朋
   age: 25
