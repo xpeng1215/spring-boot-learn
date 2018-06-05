@@ -3,6 +3,7 @@ package com.ucmed.jdbc.template;
 import com.ucmed.demo.model.jdbc.template.Account;
 import com.ucmed.demo.service.jdbc.template.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class AccountController {
 	@Autowired
 	IAccountService accountService;
 
+	@Cacheable(value = "getAccounts")
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
 	public List<Account> getAccounts(){
 		return accountService.findAccountList();

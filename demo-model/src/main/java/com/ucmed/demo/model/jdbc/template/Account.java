@@ -1,9 +1,13 @@
 package com.ucmed.demo.model.jdbc.template;
 
+import java.io.Serializable;
+
 /**
  * Created by ucmed on 2018/3/21.
  */
-public class Account {
+public class Account implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private int id ;
 
