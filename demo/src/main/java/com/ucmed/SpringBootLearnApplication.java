@@ -4,6 +4,8 @@ import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
@@ -20,7 +22,13 @@ import javax.sql.DataSource;
 @EnableCaching  // 开启redis注解
 @Component
 @PropertySource(value = "classpath:config/jdbc.properties")  // 加载自定义的数据库配置信息
-public class SpringBootLearnApplication {
+public class SpringBootLearnApplication extends SpringBootServletInitializer {
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		// 注意这里要指向原先用main方法执行的Application启动类
+		return builder.sources(SpringBootLearnApplication.class);
+	}
 
 	@Autowired
 	private Environment env;

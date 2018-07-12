@@ -2,6 +2,9 @@
 server:
   port: 9000
 
+logging:
+  config: classpath:log4j2.xml
+
 my:
   name: 许朋
   age: 25
@@ -10,3 +13,27 @@ my:
   max: ${random.int(10)}
   value: ${random.value}
   greeting: hi,i'm  ${my.name}
+
+# redis配置属性
+spring:
+    redis:
+      #数据库索引
+      database: 0
+      host: 127.0.0.1
+      port: 6379
+      password: ucmed@xupeng
+      jedis:
+        pool:
+          #最大连接数
+          max-active: 100
+          #最大阻塞等待时间(负数表示没限制)
+          max-wait: -1
+          #最大空闲
+          max-idle: 100
+          #最小空闲
+          min-idle: 0
+      #连接超时时间
+      timeout: 10000
+    # spring.cache.type 指定注解缓存使用redis
+    cache:
+        type: redis
